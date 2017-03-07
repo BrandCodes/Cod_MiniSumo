@@ -22,7 +22,7 @@ int SA1 = 0;
 int SA2 = 0;
 
 int velocidad = 64;
-int umbral = 100;
+int umbral = 300;
 
 // Inicialización
 void setup()
@@ -34,13 +34,27 @@ void setup()
   pinMode(Bi2, OUTPUT);
 }
 
+void detener(){
+  analogWrite(Ai1, 0);
+  analogWrite(Ai2, 0);
+  analogWrite(Bi1, 0);
+  analogWrite(Bi2, 0);
+}
+
 void adelante(){
+  analogWrite(Ai1, 0);
+  analogWrite(Ai2, velocidad);
+  analogWrite(Bi1, 0);
+  analogWrite(Bi2, velocidad);
+}
+
+void reversa(){
   analogWrite(Ai1, velocidad);
   analogWrite(Ai2, 0);
   analogWrite(Bi1, velocidad);
   analogWrite(Bi2, 0);
 }
- 
+
 void derecha(){
   analogWrite(Ai1, 0);
   analogWrite(Ai2, velocidad);
@@ -54,25 +68,11 @@ void izquierda(){
   analogWrite(Bi1, 0);
   analogWrite(Bi2, velocidad);
 }
- 
-void reversa(){
-  analogWrite(Ai1, 0);
-  analogWrite(Ai2, velocidad);
-  analogWrite(Bi1, 0);
-  analogWrite(Bi2, velocidad);
-}
- 
-void detener(){
-  analogWrite(Ai1, 0);
-  analogWrite(Ai2, 0);
-  analogWrite(Bi1, 0);
-  analogWrite(Bi2, 0);
-}
 
 // Rutina
 void loop() {
 
-  reversa();
+  adelante();
   linea_izq = analogRead(A0);   // Lectura de los sensores de línea
   linea_der = analogRead(A1);
   linea_atr = analogRead(A2);
@@ -80,58 +80,32 @@ void loop() {
 //  detector_izq = digitalRead(4);   //  Leemos los Detector de oponente
 //  detector_cen = digitalRead(7);
 //  detector_der = digitalRead(8);
-/*
-// ¡Detección de línea por el lado izquierdo!
-  if (linea_izq < umbral) {
-    reversa();
-//    delay(500);
-//    derecha();
-//    delay(100);
-//    adelante();
-  }
- 
+
+
 // ¡Detección de línea por el lado derecho! 
   if (linea_der < umbral)  {
     reversa();
-//    delay(500);
-//    izquierda();
-//    delay(100);
-//    adelante();
-    }*/
-
-// ¡Detección de línea por atrás!
-  if (linea_atr < umbral) {
-//    derecha();
-//    delay(100);
-    adelante();
     delay(1000);
-    detener();
+    izquierda();
     delay(500);
-  }
+    }
 
-  //Detectando línea, frontal:
-  if(linea_izq && linea_der < umbral){
-    reversa();
-    delay(1000);
-    detener();
-    delay(500);
-  }
-
-  //DEtectando por izquierda:
-  if(linea_izq < umbral){
+// ¡Detección de línea por el lado izquierdo!
+  else if (linea_izq < umbral) {
     reversa();
     delay(1000);
     derecha();
-    adelante();
+    delay(500);
   }
 
-  //DEtectando por derecha:
-  if(linea_der < umbral){
-    reversa();
-    delay(1000);
-    izquierda();
+// ¡Detección de línea por atrás!
+  else if (linea_atr < umbral) {
     adelante();
+    delay(1000);
+    detener();
+    delay(500);
   }
+
 /*
 // ¡Detección de objeto por el lado izquierdo!
   if (detector_izq = digitalRead(HIGH))  {
