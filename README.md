@@ -1,4 +1,5 @@
 # Cod_MiniSumo
-Código del mini sumo
+Código del mini sumo (Arduino)
 
-Ver.1
+Código en  construcción (puede haber diferentes versiones). 
+:) 
