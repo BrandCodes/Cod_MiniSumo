@@ -119,7 +119,7 @@ void loop() {
   if (detector_der == digitalRead(LOW))  {
     derecha();
     delay(500);
-    Detener();
+    detener();
     Serial.print("sensor derecho: ");
     Serial.print(detector_der);
     //Serial.print(lectura);
