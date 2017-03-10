@@ -63,7 +63,7 @@ void izquierda(){
 // Rutina
 void loop() {
   adelante();
-
+  //detener():
 // ¡Detección de línea por el lado izquierdo!
   linea_izq = analogRead(A0);   // Lectura del sensor de línea izquierdo
   if (linea_izq < 300) {
@@ -109,6 +109,7 @@ void loop() {
   if (detector_cen == digitalRead(LOW))  {    
     adelante();
     delay(500);
+    detener();
     Serial.print("sensor centro: ");
     Serial.print(detector_cen);
     //Serial.print(lectura);
@@ -118,6 +119,7 @@ void loop() {
   if (detector_der == digitalRead(LOW))  {
     derecha();
     delay(500);
+    Detener();
     Serial.print("sensor derecho: ");
     Serial.print(detector_der);
     //Serial.print(lectura);
