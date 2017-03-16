@@ -92,6 +92,15 @@ void loop() {
       }
     }    
   }
+    Serial.print("sensor izquierdo: ");
+    Serial.print(linea_izq);
+    Serial.print(' ');
+    Serial.print("sensor derecho: ");
+    Serial.print(linea_der);
+    Serial.print(' ');
+    Serial.print("sensor atrás: ");
+    Serial.print(linea_atr);
+    Serial.println(' ');   
     
   // ¡Detección de objeto por el lado derecho! 
   /*if (detector_der == digitalRead(HIGH))  {
