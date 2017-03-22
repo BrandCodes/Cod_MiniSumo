@@ -8,10 +8,9 @@ const int detector_izq = 4;   //  Detector de oponente izquierdo
 const int detector_cen = 7;   //  Detector de oponente central
 const int detector_der = 8;   //  Detector de oponente derecho
   
-//Izquierdo
+//Salidas al Motor Izquierda, Derecha
 int Ai1 = 5;    //  Salida 1 motor izquierdo (cable gris)
 int Ai2 = 6;    //  Salida 2 motor izquierdo (cable azul)
-//Derecho
 int Bi1 = 9;    //  Salida 1 motor derecho (cable azul)
 int Bi2 = 10;   //  Salida 2 motor derecho (cable gris)
 
@@ -85,20 +84,17 @@ void MtdProximidad(){
     izquierda();
     delay(1000);
     adelante();
-  }
- 
+  } 
   // ¡Detección de objeto por el lado derecho! 
   if (pinProxDer == HIGH)  {
     derecha();
     delay(1000);
     adelante();
   }
-
   // ¡Detección de objeto por el frente!
   if (pinProxFront == HIGH)  {
     adelante();
   }
-
   //Mandando a imprimir los valores:
     Serial.print("sensorProxi izquierdo: ");
     Serial.print(detector_izq);
@@ -112,8 +108,7 @@ void MtdProximidad(){
 }//Fin MTDProximididad
 
 // Rutina
-void loop() {
-  
+void loop() {  
   adelante();
   MtdProximidad();
 // ¡Detección de línea por el lado izquierdo!
@@ -144,8 +139,7 @@ void loop() {
       if (pinStateAtr < 400) {
         detener();
         delay(1000);
-      }
-    
+      }    
   }
 }
     Serial.print("sensor izquierdo: ");
@@ -156,17 +150,5 @@ void loop() {
     Serial.print(' ');
     Serial.print("sensor atrás: ");
     Serial.print(linea_atr);
-    Serial.println(' ');   
-
-  // ¡Detección de objeto por el lado derecho! 
-/*  if (detector_der = digitalRead(HIGH))  {
-    derecha();
-    delay(1000);
-    adelante();
-  }
-
-  // ¡Detección de objeto por el frente!
-  if (detector_cen = digitalRead(HIGH))  {
-    adelante();
-  }*/ 
+    Serial.println(' ');    
 }//Fin Loop
