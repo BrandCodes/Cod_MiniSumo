@@ -142,8 +142,7 @@ void loop() {
         delay(1000);
         adelante();
         delay(800);
-      }
-    
+      }    
   }
 }
     Serial.print("sensor izquierdo: ");
